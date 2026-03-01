@@ -142,25 +142,26 @@
     line-height: 1.8;
   }
 
-  /* ADD IDEA - sits in the grid */
-  .dare.add-idea {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 160px;
-  }
-
-  .dare.add-idea a {
+  /* FLOATING ADD IDEA */
+  .add-idea-float {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 999;
     color: var(--dim);
     text-decoration: none;
-    font-size: 0.75rem;
-    transition: color 0.2s;
-    text-align: center;
-    line-height: 1.8;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 0.6rem 1rem;
+    transition: all 0.15s;
   }
 
-  .dare.add-idea:hover a {
+  .add-idea-float:hover {
     color: var(--green);
+    border-color: var(--green);
+    box-shadow: var(--glow);
   }
 
   /* RESOURCES */
@@ -298,9 +299,6 @@
         <p>Most apps that could use bitcoin don't know it yet. What new product experiences can you build that use instant permissionless value transfer as an enabler, not the main feature?</p>
       </div>
 
-      <div class="dare add-idea">
-        <a href="#">$ submit --idea<br>"your idea here"</a>
-      </div>
     </div>
   </section>
 
@@ -316,6 +314,18 @@
     <p>made with coffee and love by <a href="https://artassoiants.com">Art Assoiants</a></p>
   </footer>
 </div>
+
+<a href="https://forms.gle/dYP25U4DFwiKc9Gn7" target="_blank" rel="noopener" class="add-idea-float">$ submit --idea</a>
+
+<script>
+  const board = document.querySelector('.board');
+  const dares = [...board.querySelectorAll('.dare')];
+  for (let i = dares.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    board.appendChild(dares[j]);
+    dares[j] = dares[i];
+  }
+</script>
 
 </body>
 </html>
