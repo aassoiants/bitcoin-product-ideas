@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bitcoin Product Ideas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --green: #33ff33;
+    --dim: #1a7a1a;
+    --bg: #0a0a0a;
+    --card-bg: #0f0f0f;
+    --card-border: #1a3a1a;
+    --glow: 0 0 10px #33ff3340;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--green);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      #00000015 2px,
+      #00000015 4px
+    );
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  .page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 3rem 0 2.5rem;
+    border-bottom: 1px solid var(--card-border);
+    margin-bottom: 2.5rem;
+    text-align: center;
+  }
+
+  .prompt { color: var(--dim); user-select: none; }
+
+  .hero h1 {
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 .line {
+    display: block;
+  }
+
+  .hero .sub {
+    color: #22aa22;
+    font-size: 0.82rem;
+    font-weight: 300;
+    margin-bottom: 2rem;
+    line-height: 1.8;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta {
+    display: inline-block;
+    color: #0a0a0a;
+    background: var(--green);
+    padding: 0.5rem 1.2rem;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+  }
+
+  .cta:hover {
+    box-shadow: var(--glow);
+  }
+
+  /* BOARD HEADER */
+  .board-header {
+    color: var(--dim);
+    font-size: 0.7rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+    text-align: center;
+  }
+
+  /* BOARD GRID */
+  .board {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1px;
+    background: var(--card-border);
+    border: 1px solid var(--card-border);
+    margin-bottom: 2.5rem;
+  }
+
+  .dare {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    transition: background 0.15s;
+    cursor: default;
+  }
+
+  .dare:hover {
+    background: #111a11;
+  }
+
+  .dare h2 {
+    font-size: 0.82rem;
+    font-weight: 500;
+    margin-bottom: 0.7rem;
+    color: var(--green);
+    line-height: 1.5;
+  }
+
+  .dare p {
+    font-size: 0.72rem;
+    color: #22aa22;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  /* ADD IDEA - sits in the grid */
+  .dare.add-idea {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 160px;
+  }
+
+  .dare.add-idea a {
+    color: var(--dim);
+    text-decoration: none;
+    font-size: 0.75rem;
+    transition: color 0.2s;
+    text-align: center;
+    line-height: 1.8;
+  }
+
+  .dare.add-idea:hover a {
+    color: var(--green);
+  }
+
+  /* RESOURCES */
+  .resources {
+    border-top: 1px solid var(--card-border);
+    padding-top: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .resources h3 {
+    font-size: 0.7rem;
+    color: var(--dim);
+    font-weight: 400;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.05em;
+    text-align: center;
+  }
+
+  .res-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .resources a {
+    color: var(--green);
+    text-decoration: none;
+    font-size: 0.75rem;
+    padding: 0.3rem 0;
+    position: relative;
+  }
+
+  .resources a::before {
+    content: '$ ';
+    color: var(--dim);
+  }
+
+  .resources a:hover {
+    text-shadow: var(--glow);
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--card-border);
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+    font-size: 0.65rem;
+    color: #1a5a1a;
+    text-align: center;
+  }
+
+  footer a { color: #22aa22; text-decoration: none; }
+  footer a:hover { color: var(--green); }
+
+  /* CURSOR BLINK */
+  .cursor {
+    display: inline-block;
+    width: 0.6em;
+    height: 1.1em;
+    background: var(--green);
+    vertical-align: text-bottom;
+    animation: blink 1s step-end infinite;
+    margin-left: 2px;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  /* NAV BACK */
+  .nav-back {
+    position: fixed;
+    top: 1rem;
+    right: 1.5rem;
+    color: var(--dim);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    z-index: 1001;
+  }
+  .nav-back:hover { color: var(--green); }
+
+  @media (max-width: 650px) {
+    .board {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+
+<a href="index.html" class="nav-back">← back</a>
+
+<div class="page">
+  <section class="hero">
+    <h1>
+      <span class="prompt">$ </span><span class="line">You want to build in bitcoin.</span>
+      <span class="prompt">$ </span><span class="line">You just don't know what yet.<span class="cursor"></span></span>
+    </h1>
+    <p class="sub">
+      The ideas exist. They're just scattered everywhere.<br>
+      We collected them so you can stop searching and start building.
+    </p>
+    <a href="#board" class="cta">cat ideas.txt</a>
+  </section>
+
+  <section id="board">
+    <p class="board-header">// IDEAS.TXT</p>
+
+    <div class="board">
+      <div class="dare">
+        <h2>Give an AI agent a bitcoin wallet.</h2>
+        <p>There's no good UX for giving an AI agent money, letting it transact on your behalf, and staying in control. OpenClaw, MoneyDevKit, and Alby are moving fast here but it's wide open.</p>
+      </div>
+
+      <div class="dare">
+        <h2>Build a game where AI agents compete with real money.</h2>
+        <p>Not a crypto game. A classic game with a real bitcoin economy, played entirely by AI agents, watched by humans. Think board games with actual stakes.</p>
+      </div>
+
+      <div class="dare">
+        <h2>Build a copy-paste component library for bitcoin UI.</h2>
+        <p>Every vibe-coded bitcoin app starts by building the same balance display, address formatter, and block clock from scratch. ShadCN has a directory for community components. Bitcoin has nothing in it.</p>
+      </div>
+
+      <div class="dare">
+        <h2>Show people what their bitcoin node is actually doing.</h2>
+        <p>Bitcoin Core proposed a showcase design for visualizing node activity. Nobody has built it as a real desktop app yet. The design exists. The implementation doesn't.</p>
+      </div>
+
+      <div class="dare">
+        <h2>Explain bitcoin's quantum risk so anyone can get it.</h2>
+        <p>The topic is complex and most explanations are either too technical or too dismissive. There's room for something interactive, visual, and honest about the current status and ongoing work.</p>
+      </div>
+
+      <div class="dare">
+        <h2>Collect the good things real people say about bitcoin.</h2>
+        <p>Nobody is collecting positive, real sentences from actual bitcoin users. Not influencers, not maxis. Just regular people saying what it did for them.</p>
+      </div>
+
+      <div class="dare">
+        <h2>Build something in bitcoin that Gen Z would actually use.</h2>
+        <p>Nothing in bitcoin is built for how Gen Z uses the internet. The interfaces, the language, the onboarding. What if you had to earn their attention first?</p>
+      </div>
+
+      <div class="dare">
+        <h2>Make an app that doesn't know it needs permissionless payments.</h2>
+        <p>Most apps that could use bitcoin don't know it yet. What new product experiences can you build that use instant permissionless value transfer as an enabler, not the main feature?</p>
+      </div>
+
+      <div class="dare add-idea">
+        <a href="#">$ submit --idea<br>"your idea here"</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="resources">
+    <h3>// HERE, TAKE THIS WITH YOU</h3>
+    <div class="res-links">
+      <a href="https://bitcoin.design">bitcoin.design</a>
+      <a href="https://skills.sh">product framing on skills.sh</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>made with coffee and love by <a href="#">Art Assoiants</a></p>
+  </footer>
+</div>
+
+</body>
+</html>
