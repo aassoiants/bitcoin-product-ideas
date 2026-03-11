@@ -5,28 +5,38 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bitcoin Product Ideas</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    --green: #33ff33;
-    --dim: #1a7a1a;
-    --bg: #0a0a0a;
-    --card-bg: #0f0f0f;
-    --card-border: #1a3a1a;
-    --glow: 0 0 10px #33ff3340;
+    --green: #4ade80;
+    --green-dim: rgba(74,222,128,0.3);
+    --green-faint: rgba(74,222,128,0.08);
+    --accent: #f5a623;
+    --accent-dim: rgba(245,166,35,0.3);
+    --heading: #e4e4e4;
+    --body: #8a9a88;
+    --body-light: #a8b8a6;
+    --chrome: rgba(74,222,128,0.25);
+    --bg: #0c0f0c;
+    --card-bg: #0e110e;
+    --card-hover: #111611;
+    --border: #1a2a1a;
+    --border-hover: #243824;
   }
 
   body {
     background: var(--bg);
-    color: var(--green);
-    font-family: 'JetBrains Mono', monospace;
+    color: var(--body);
+    font-family: 'Instrument Sans', sans-serif;
     font-size: 15px;
     line-height: 1.7;
     min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
   }
 
+  /* Subtle scanlines — kept from original but softer */
   body::before {
     content: '';
     position: fixed;
@@ -35,8 +45,8 @@
       0deg,
       transparent,
       transparent 2px,
-      #00000015 2px,
-      #00000015 4px
+      rgba(0,0,0,0.06) 2px,
+      rgba(0,0,0,0.06) 4px
     );
     pointer-events: none;
     z-index: 1000;
@@ -48,20 +58,29 @@
     padding: 2rem;
   }
 
-  /* HERO */
+  /* ── HERO ── */
   .hero {
-    padding: 3rem 0 2.5rem;
-    border-bottom: 1px solid var(--card-border);
+    padding: 4rem 0 3rem;
+    border-bottom: 1px solid var(--border);
     margin-bottom: 2.5rem;
     text-align: center;
   }
 
-  .prompt { color: var(--dim); user-select: none; }
+  .prompt {
+    color: var(--chrome);
+    user-select: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+  }
 
   .hero h1 {
-    font-size: 1.1rem;
-    font-weight: 400;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--heading);
     margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+    line-height: 1.5;
   }
 
   .hero h1 .line {
@@ -69,77 +88,68 @@
   }
 
   .hero .sub {
-    color: #22aa22;
-    font-size: 0.82rem;
-    font-weight: 300;
-    margin-bottom: 2rem;
+    color: var(--body);
+    font-size: 0.88rem;
+    font-weight: 400;
+    margin-bottom: 2.2rem;
     line-height: 1.8;
-    max-width: 560px;
+    max-width: 540px;
     margin-left: auto;
     margin-right: auto;
   }
 
   .cta {
     display: inline-block;
-    color: #0a0a0a;
+    color: var(--bg);
     background: var(--green);
-    padding: 0.5rem 1.2rem;
+    padding: 0.55rem 1.4rem;
     text-decoration: none;
-    font-family: inherit;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 0.75rem;
-    font-weight: 700;
+    font-weight: 600;
     border: none;
     cursor: pointer;
-    transition: box-shadow 0.2s;
+    border-radius: 4px;
+    transition: all 0.2s ease;
   }
 
   .cta:hover {
-    box-shadow: var(--glow);
+    background: #5ce898;
+    box-shadow: 0 0 20px rgba(74,222,128,0.25), 0 0 4px rgba(74,222,128,0.4);
   }
 
-  /* BOARD HEADER */
+  /* ── BOARD HEADER ── */
   .board-header {
-    color: var(--dim);
-    font-size: 0.7rem;
+    color: var(--chrome);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
     margin-bottom: 1.5rem;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
     text-align: center;
   }
 
-  /* BOARD GRID */
+  /* ── BOARD GRID ── */
   .board {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1px;
-    background: var(--card-border);
-    border: 1px solid var(--card-border);
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
     margin-bottom: 2.5rem;
   }
 
   .dare {
     background: var(--card-bg);
-    padding: 1.5rem;
-    transition: background 0.15s;
+    padding: 1.6rem;
+    transition: all 0.2s ease;
     cursor: default;
+    position: relative;
   }
 
   .dare:hover {
-    background: #111a11;
-  }
-
-  .dare h2 {
-    font-size: 0.82rem;
-    font-weight: 500;
-    margin-bottom: 0.7rem;
-    color: var(--green);
-    line-height: 1.5;
-  }
-
-  .dare p {
-    font-size: 0.72rem;
-    color: #22aa22;
-    font-weight: 300;
-    line-height: 1.8;
+    background: var(--card-hover);
   }
 
   .dare-empty {
@@ -152,10 +162,12 @@
   }
 
   .dare-empty h2 {
-    color: var(--dim);
-    font-weight: 300;
+    font-family: 'Instrument Sans', sans-serif;
+    color: rgba(138,154,136,0.35);
+    font-weight: 400;
     font-style: italic;
     margin-bottom: 0;
+    transition: color 0.2s ease;
   }
 
   .dare-empty:hover {
@@ -163,44 +175,93 @@
   }
 
   .dare-empty:hover h2 {
-    color: var(--green);
+    color: var(--accent);
   }
 
-  /* FLOATING ADD IDEA */
+  /* Top-edge glow on card hover */
+  .dare::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: transparent;
+    transition: background 0.2s ease;
+  }
+
+  .dare:hover::before {
+    background: linear-gradient(90deg, transparent, var(--green-dim), transparent);
+  }
+
+  .dare h2 {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    margin-bottom: 0.7rem;
+    color: var(--heading);
+    line-height: 1.45;
+    letter-spacing: -0.005em;
+  }
+
+  .dare p {
+    font-size: 0.78rem;
+    color: var(--body);
+    font-weight: 400;
+    line-height: 1.8;
+  }
+
+  /* Links inside cards — accent orange */
+  .dare p a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--accent-dim);
+    transition: all 0.15s ease;
+  }
+
+  .dare p a:hover {
+    color: #ffbe4a;
+    text-decoration-color: #ffbe4a;
+    text-shadow: 0 0 8px rgba(245,166,35,0.3);
+  }
+
+  /* ── FLOATING ADD IDEA ── */
   .add-idea-float {
     position: fixed;
     bottom: 1.5rem;
     right: 1.5rem;
     z-index: 999;
-    color: var(--dim);
+    color: var(--chrome);
     text-decoration: none;
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.7rem;
     background: var(--card-bg);
-    border: 1px solid var(--card-border);
+    border: 1px solid var(--border);
     padding: 0.6rem 1rem;
-    transition: all 0.15s;
+    border-radius: 4px;
+    transition: all 0.2s ease;
   }
 
   .add-idea-float:hover {
     color: var(--green);
     border-color: var(--green);
-    box-shadow: var(--glow);
+    background: rgba(74,222,128,0.05);
+    box-shadow: 0 0 12px rgba(74,222,128,0.15);
   }
 
-  /* RESOURCES */
+  /* ── RESOURCES ── */
   .resources {
-    border-top: 1px solid var(--card-border);
+    border-top: 1px solid var(--border);
     padding-top: 2rem;
     margin-bottom: 3rem;
   }
 
   .resources h3 {
-    font-size: 0.7rem;
-    color: var(--dim);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--chrome);
     font-weight: 400;
-    margin-bottom: 1.2rem;
-    letter-spacing: 0.05em;
+    margin-bottom: 1.4rem;
+    letter-spacing: 0.08em;
     text-align: center;
   }
 
@@ -212,51 +273,64 @@
   }
 
   .res-links span {
-    color: var(--green);
-    font-size: 0.75rem;
+    color: var(--body-light);
+    font-size: 0.78rem;
     padding: 0.3rem 0;
+    font-weight: 400;
   }
 
   .res-links span::before {
     content: '$ ';
-    color: var(--dim);
+    color: var(--chrome);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
   }
 
   .resources a {
-    color: var(--green);
+    color: var(--accent);
     text-decoration: underline;
     text-underline-offset: 3px;
-    text-decoration-color: var(--dim);
+    text-decoration-color: var(--accent-dim);
     font-size: inherit;
+    transition: all 0.15s ease;
   }
 
   .resources a:hover {
-    text-decoration-color: var(--green);
-    text-shadow: var(--glow);
+    color: #ffbe4a;
+    text-decoration-color: #ffbe4a;
+    text-shadow: 0 0 8px rgba(245,166,35,0.3);
   }
 
-  /* FOOTER */
+  /* ── FOOTER ── */
   footer {
-    border-top: 1px solid var(--card-border);
+    border-top: 1px solid var(--border);
     padding-top: 2rem;
     padding-bottom: 3rem;
-    font-size: 0.65rem;
-    color: #1a5a1a;
+    font-size: 0.72rem;
+    color: rgba(138,154,136,0.5);
     text-align: center;
   }
 
-  footer a { color: #22aa22; text-decoration: none; }
-  footer a:hover { color: var(--green); }
+  footer a {
+    color: var(--body);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
 
-  /* CURSOR BLINK */
+  footer a:hover {
+    color: var(--heading);
+  }
+
+  /* ── CURSOR BLINK ── */
   .cursor {
     display: inline-block;
-    width: 0.6em;
-    height: 1.1em;
+    width: 0.55em;
+    height: 1.05em;
     background: var(--green);
     vertical-align: text-bottom;
     animation: blink 1s step-end infinite;
     margin-left: 2px;
+    border-radius: 1px;
   }
 
   @keyframes blink {
@@ -266,6 +340,9 @@
   @media (max-width: 650px) {
     .board {
       grid-template-columns: 1fr;
+    }
+    .hero h1 {
+      font-size: 1.1rem;
     }
   }
 </style>
@@ -292,7 +369,7 @@
     <div class="board">
       <div class="dare">
         <h2>Give an AI agent a bitcoin wallet.</h2>
-        <p>There's no good UX for giving an AI agent money, letting it transact on your behalf, and staying in control. OpenClaw, MoneyDevKit, and Alby are moving fast here but it's wide open. Some inspiration <a href="https://github.com/tiero/claw-cash" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:3px">here</a>, <a href="https://github.com/moneydevkit" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:3px">here</a>, and <a href="https://github.com/getalby" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:3px">here</a>.</p>
+        <p>There's no good UX for giving an AI agent money, letting it transact on your behalf, and staying in control. OpenClaw, MoneyDevKit, and Alby are moving fast here but it's wide open. Some inspiration <a href="https://github.com/tiero/claw-cash" target="_blank" rel="noopener">here</a>, <a href="https://github.com/moneydevkit" target="_blank" rel="noopener">here</a>, and <a href="https://github.com/getalby" target="_blank" rel="noopener">here</a>.</p>
       </div>
 
       <div class="dare">
@@ -302,12 +379,12 @@
 
       <div class="dare">
         <h2>Build the component library bitcoin doesn't have yet.</h2>
-        <p>Every new bitcoin app starts the same way: building a balance display, an address formatter, a block clock. From scratch. ShadCN solved this for web UI with a <a href="https://ui.shadcn.com/docs/directory" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:3px">community directory</a>. Nobody's done it for bitcoin.</p>
+        <p>Every new bitcoin app starts the same way: building a balance display, an address formatter, a block clock. From scratch. ShadCN solved this for web UI with a <a href="https://ui.shadcn.com/docs/directory" target="_blank" rel="noopener">community directory</a>. Nobody's done it for bitcoin.</p>
       </div>
 
       <div class="dare">
         <h2>Show people what their bitcoin node is actually doing.</h2>
-        <p>Bitcoin Core proposed a <a href="https://bitcoincore.app/showcase/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:3px">showcase design</a> for visualizing node activity. Nobody has built it as a real desktop app yet. The design exists. The implementation doesn't.</p>
+        <p>Bitcoin Core proposed a <a href="https://bitcoincore.app/showcase/" target="_blank" rel="noopener">showcase design</a> for visualizing node activity. Nobody has built it as a real desktop app yet. The design exists. The implementation doesn't.</p>
       </div>
 
       <div class="dare">
@@ -322,7 +399,7 @@
 
       <div class="dare">
         <h2>Build something in bitcoin that Gen Z would actually use.</h2>
-        <p>Nothing in bitcoin is built for how Gen Z uses the internet. The interfaces, the language, the onboarding. What if you had to earn their attention first? For inspiration, check <a href="https://skibidi.cash/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:3px">this</a>.</p>
+        <p>Nothing in bitcoin is built for how Gen Z uses the internet. The interfaces, the language, the onboarding. What if you had to earn their attention first? For inspiration, check <a href="https://skibidi.cash/" target="_blank" rel="noopener">this</a>.</p>
       </div>
 
       <div class="dare">
