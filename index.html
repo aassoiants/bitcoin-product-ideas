@@ -142,6 +142,30 @@
     line-height: 1.8;
   }
 
+  .dare-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .dare-empty h2 {
+    color: var(--dim);
+    font-weight: 300;
+    font-style: italic;
+    margin-bottom: 0;
+  }
+
+  .dare-empty:hover {
+    background: transparent;
+  }
+
+  .dare-empty:hover h2 {
+    color: var(--green);
+  }
+
   /* FLOATING ADD IDEA */
   .add-idea-float {
     position: fixed;
@@ -187,20 +211,27 @@
     flex-wrap: wrap;
   }
 
-  .resources a {
+  .res-links span {
     color: var(--green);
-    text-decoration: none;
     font-size: 0.75rem;
     padding: 0.3rem 0;
-    position: relative;
   }
 
-  .resources a::before {
+  .res-links span::before {
     content: '$ ';
     color: var(--dim);
   }
 
+  .resources a {
+    color: var(--green);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--dim);
+    font-size: inherit;
+  }
+
   .resources a:hover {
+    text-decoration-color: var(--green);
     text-shadow: var(--glow);
   }
 
@@ -245,8 +276,8 @@
 <div class="page">
   <section class="hero">
     <h1>
-      <span class="prompt">$ </span><span class="line">You want to build in bitcoin.</span>
-      <span class="prompt">$ </span><span class="line">You just don't know what yet.<span class="cursor"></span></span>
+      <span class="line"><span class="prompt">$ </span>You want to build in bitcoin.</span>
+      <span class="line"><span class="prompt">$ </span>You just don't know what yet.<span class="cursor"></span></span>
     </h1>
     <p class="sub">
       The ideas exist. They're just scattered everywhere.<br>
@@ -261,7 +292,7 @@
     <div class="board">
       <div class="dare">
         <h2>Give an AI agent a bitcoin wallet.</h2>
-        <p>There's no good UX for giving an AI agent money, letting it transact on your behalf, and staying in control. OpenClaw, MoneyDevKit, and Alby are moving fast here but it's wide open.</p>
+        <p>There's no good UX for giving an AI agent money, letting it transact on your behalf, and staying in control. OpenClaw, MoneyDevKit, and Alby are moving fast here but it's wide open. Some inspiration <a href="https://github.com/tiero/claw-cash" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:3px">here</a>, <a href="https://github.com/moneydevkit" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:3px">here</a>, and <a href="https://github.com/getalby" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:3px">here</a>.</p>
       </div>
 
       <div class="dare">
@@ -270,13 +301,13 @@
       </div>
 
       <div class="dare">
-        <h2>Build a copy-paste component library for bitcoin UI.</h2>
-        <p>Every vibe-coded bitcoin app starts by building the same balance display, address formatter, and block clock from scratch. ShadCN has a directory for community components. Bitcoin has nothing in it.</p>
+        <h2>Build the component library bitcoin doesn't have yet.</h2>
+        <p>Every new bitcoin app starts the same way: building a balance display, an address formatter, a block clock. From scratch. ShadCN solved this for web UI with a <a href="https://ui.shadcn.com/docs/directory" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:3px">community directory</a>. Nobody's done it for bitcoin.</p>
       </div>
 
       <div class="dare">
         <h2>Show people what their bitcoin node is actually doing.</h2>
-        <p>Bitcoin Core proposed a showcase design for visualizing node activity. Nobody has built it as a real desktop app yet. The design exists. The implementation doesn't.</p>
+        <p>Bitcoin Core proposed a <a href="https://bitcoincore.app/showcase/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:3px">showcase design</a> for visualizing node activity. Nobody has built it as a real desktop app yet. The design exists. The implementation doesn't.</p>
       </div>
 
       <div class="dare">
@@ -291,7 +322,7 @@
 
       <div class="dare">
         <h2>Build something in bitcoin that Gen Z would actually use.</h2>
-        <p>Nothing in bitcoin is built for how Gen Z uses the internet. The interfaces, the language, the onboarding. What if you had to earn their attention first?</p>
+        <p>Nothing in bitcoin is built for how Gen Z uses the internet. The interfaces, the language, the onboarding. What if you had to earn their attention first? For inspiration, check <a href="https://skibidi.cash/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:3px">this</a>.</p>
       </div>
 
       <div class="dare">
@@ -299,19 +330,26 @@
         <p>Most apps that could use bitcoin don't know it yet. What new product experiences can you build that use instant permissionless value transfer as an enabler, not the main feature?</p>
       </div>
 
+      <a href="https://forms.gle/dYP25U4DFwiKc9Gn7" target="_blank" rel="noopener" class="dare dare-empty">
+        <h2>Your ideas here.</h2>
+      </a>
+
     </div>
   </section>
 
   <section class="resources">
     <h3>// HERE, TAKE THIS WITH YOU</h3>
     <div class="res-links">
-      <a href="https://bitcoin.design">bitcoin.design</a>
-      <a href="https://skills.sh/aassoiants/product-framing">product framing AI agent skill</a>
+      <span>Join the <a href="https://discord.gg/K7aQ5PErht">Bitcoin Design Community</a></span>
+      <span>Tag <a href="https://x.com/bitcoin_design">Bitcoin Design</a> as you build</span>
+      <span>Check out these <a href="https://bitcoin.design/projects">bitcoin design initiatives</a></span>
+      <span>Use this to <a href="https://skills.sh/aassoiants/product-framing/product-framing">frame your product problems</a></span>
     </div>
   </section>
 
   <footer>
-    <p>made with coffee and love by <a href="https://artassoiants.com">Art Assoiants</a></p>
+    <p>Made with coffee and love by <a href="https://artassoiants.com">Art Assoiants</a></p>
+    <p style="margin-top:0.8rem">With ideas and support from <a href="https://bitcoin.design/">Bitcoin Design Community</a> & <a href="https://bitcoindevs.xyz/">Bitcoin Dev Project</a></p>
   </footer>
 </div>
 
@@ -319,12 +357,14 @@
 
 <script>
   const board = document.querySelector('.board');
-  const dares = [...board.querySelectorAll('.dare')];
+  const dares = [...board.querySelectorAll('.dare:not(.dare-empty)')];
+  const empty = board.querySelector('.dare-empty');
   for (let i = dares.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     board.appendChild(dares[j]);
     dares[j] = dares[i];
   }
+  if (empty) board.appendChild(empty);
 </script>
 
 </body>
