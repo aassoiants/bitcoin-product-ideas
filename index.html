@@ -337,6 +337,86 @@
     50% { opacity: 0; }
   }
 
+  /* ── FILTERS ── */
+  .filters {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--body);
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 0.35rem 0.7rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .filter-btn:hover {
+    color: var(--green);
+    border-color: var(--green-dim);
+    background: var(--green-faint);
+  }
+
+  .filter-btn.active {
+    color: var(--green);
+    border-color: var(--green);
+    background: var(--green-faint);
+  }
+
+  /* ── CARD TAGS ── */
+  .dare {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dare p {
+    flex: 1;
+  }
+
+  .tag-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+  }
+
+  .tag-oval {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.03em;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+  }
+
+  .tag-oval.wire {
+    color: var(--green);
+    border: 1px solid rgba(74,222,128,0.2);
+    background: rgba(74,222,128,0.05);
+  }
+
+  .tag-oval.build {
+    color: var(--accent);
+    border: 1px solid rgba(245,166,35,0.2);
+    background: rgba(245,166,35,0.05);
+  }
+
+  .tag-oval.understand {
+    color: #60a5fa;
+    border: 1px solid rgba(96,165,250,0.2);
+    background: rgba(96,165,250,0.05);
+  }
+
+  /* ── FILTER TRANSITION ── */
+  .dare.hidden {
+    display: none;
+  }
+
   @media (max-width: 650px) {
     .board {
       grid-template-columns: 1fr;
@@ -366,45 +446,84 @@
   <section id="board">
     <p class="board-header">// IDEAS.TXT</p>
 
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">all</button>
+      <button class="filter-btn" data-filter="wire">wire it up</button>
+      <button class="filter-btn" data-filter="build">build a new thing</button>
+      <button class="filter-btn" data-filter="understand">help them understand</button>
+    </div>
+
     <div class="board">
-      <div class="dare">
+      <div class="dare" data-tag="build">
         <h2>Give an AI agent a bitcoin wallet.</h2>
         <p>There's no good UX for giving an AI agent money, letting it transact on your behalf, and staying in control. OpenClaw, MoneyDevKit, and Alby are moving fast here but it's wide open. Some inspiration <a href="https://github.com/tiero/claw-cash" target="_blank" rel="noopener">here</a>, <a href="https://github.com/moneydevkit" target="_blank" rel="noopener">here</a>, and <a href="https://github.com/getalby" target="_blank" rel="noopener">here</a>.</p>
+        <div class="tag-footer"><span class="tag-oval build">build a new thing</span></div>
       </div>
 
-      <div class="dare">
+      <div class="dare" data-tag="build">
         <h2>Build a game where AI agents compete with real money.</h2>
         <p>Not a crypto game. A classic game with a real bitcoin economy, played entirely by AI agents, watched by humans. Think board games with actual stakes.</p>
+        <div class="tag-footer"><span class="tag-oval build">build a new thing</span></div>
       </div>
 
-      <div class="dare">
+      <div class="dare" data-tag="build">
         <h2>Build the component library bitcoin doesn't have yet.</h2>
         <p>Every new bitcoin app starts the same way: building a balance display, an address formatter, a block clock. From scratch. ShadCN solved this for web UI with a <a href="https://ui.shadcn.com/docs/directory" target="_blank" rel="noopener">community directory</a>. Nobody's done it for bitcoin.</p>
+        <div class="tag-footer"><span class="tag-oval build">build a new thing</span></div>
       </div>
 
-      <div class="dare">
+      <div class="dare" data-tag="wire">
         <h2>Show people what their bitcoin node is actually doing.</h2>
         <p>Bitcoin Core proposed a <a href="https://bitcoincore.app/showcase/" target="_blank" rel="noopener">showcase design</a> for visualizing node activity. Nobody has built it as a real desktop app yet. The design exists. The implementation doesn't.</p>
+        <div class="tag-footer"><span class="tag-oval wire">wire it up</span></div>
       </div>
 
-      <div class="dare">
+      <div class="dare" data-tag="understand">
         <h2>Explain bitcoin's quantum risk so anyone can get it.</h2>
         <p>The topic is complex and most explanations are either too technical or too dismissive. There's room for something interactive, visual, and honest about the current status and ongoing work.</p>
+        <div class="tag-footer"><span class="tag-oval understand">help them understand</span></div>
       </div>
 
-      <div class="dare">
+      <div class="dare" data-tag="understand">
         <h2>Collect the good things real people say about bitcoin.</h2>
         <p>Nobody is collecting positive, real sentences from actual bitcoin users. Not influencers, not maxis. Just regular people saying what it did for them.</p>
+        <div class="tag-footer"><span class="tag-oval understand">help them understand</span></div>
       </div>
 
-      <div class="dare">
+      <div class="dare" data-tag="build">
         <h2>Build something in bitcoin that Gen Z would actually use.</h2>
         <p>Nothing in bitcoin is built for how Gen Z uses the internet. The interfaces, the language, the onboarding. What if you had to earn their attention first? For inspiration, check <a href="https://skibidi.cash/" target="_blank" rel="noopener">this</a>.</p>
+        <div class="tag-footer"><span class="tag-oval build">build a new thing</span></div>
       </div>
 
-      <div class="dare">
+      <div class="dare" data-tag="build">
         <h2>Make an app that doesn't know it needs permissionless payments.</h2>
         <p>Most apps that could use bitcoin don't know it yet. What new product experiences can you build that use instant permissionless value transfer as an enabler, not the main feature?</p>
+        <div class="tag-footer"><span class="tag-oval build">build a new thing</span></div>
+      </div>
+
+      <div class="dare" data-tag="wire">
+        <h2>Make payjoin work in the wallets people already use.</h2>
+        <p>Payjoin Dev Kit exists and <a href="https://www.bullbitcoin.com/" target="_blank" rel="noopener">Bull Bitcoin</a> and <a href="https://cakewallet.com/" target="_blank" rel="noopener">Cake Wallet</a> have shipped v2 integrations. But that's two wallets. The work is mostly language bindings: Java for Sparrow, Swift for FullyNoded, C++ for Bitcoin Core and Nunchuk, Python for Electrum, Dart for Aqua. Start with <a href="https://payjoindevkit.org/" target="_blank" rel="noopener">Payjoin Dev Kit</a>.</p>
+        <div class="tag-footer"><span class="tag-oval wire">wire it up</span></div>
+      </div>
+
+      <div class="dare" data-tag="wire">
+        <h2>Put a point-of-sale mode in your bitcoin wallet.</h2>
+        <p>Most bitcoin wallets give merchants a receive screen. That's not a POS. A POS has preset items, a keypad, notes, payment history, and a way to export it all. <a href="https://btcpayserver.org/" target="_blank" rel="noopener">BTCPay Server</a> has this but requires hosting your own server. <a href="https://www.walletofsatoshi.com/" target="_blank" rel="noopener">Wallet of Satoshi</a> and <a href="https://breez.technology/" target="_blank" rel="noopener">Breez</a> have it as mobile apps, but neither tracks payment rails or exports clean accounting data.</p>
+        <div class="tag-footer"><span class="tag-oval wire">wire it up</span></div>
+      </div>
+
+      <div class="dare" data-tag="build">
+        <h2>Tell people what it actually costs them to spend their bitcoin today.</h2>
+        <p>Most holders have coins in multiple wallets with different cost bases and no idea what the tax hit looks like if they spend right now. <a href="https://cointracking.info/" target="_blank" rel="noopener">CoinTracking</a> and <a href="https://koinly.io/" target="_blank" rel="noopener">Koinly</a> let you simulate a sale, but both are buried features in year-end tax software built for traders. Nobody's built the forward-looking version for everyday spending: connect your wallets, see your basis, know before you tap.</p>
+        <div class="tag-footer"><span class="tag-oval build">build a new thing</span></div>
+      </div>
+
+      <div class="dare" data-tag="build">
+        <h2>Build a bookkeeping program for bitcoin that keeps your data local.</h2>
+        <p><a href="https://clams.tech/" target="_blank" rel="noopener">Clams</a> is the closest thing: double-entry accounting with on-chain and Lightning support, fiat multi-currency, and cost basis tracking as of V1 Beta. But it's not fully open source and has no invoicing. <a href="https://btcpayserver.org/" target="_blank" rel="noopener">BTCPay</a> stops at the accounting boundary. <a href="https://zaprite.com/" target="_blank" rel="noopener">Zaprite</a> has the best invoicing UX but it's closed-source SaaS. GnuCash can't handle satoshi precision.</p>
+        <div class="tag-footer"><span class="tag-oval build">build a new thing</span></div>
       </div>
 
       <a href="https://forms.gle/dYP25U4DFwiKc9Gn7" target="_blank" rel="noopener" class="dare dare-empty">
@@ -436,12 +555,30 @@
   const board = document.querySelector('.board');
   const dares = [...board.querySelectorAll('.dare:not(.dare-empty)')];
   const empty = board.querySelector('.dare-empty');
+
+  // Shuffle on load
   for (let i = dares.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     board.appendChild(dares[j]);
     dares[j] = dares[i];
   }
   if (empty) board.appendChild(empty);
+
+  // Filter
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      board.querySelectorAll('.dare:not(.dare-empty)').forEach(card => {
+        if (filter === 'all' || card.dataset.tag === filter) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
 </script>
 
 </body>
